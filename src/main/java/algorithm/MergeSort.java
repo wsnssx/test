@@ -43,10 +43,46 @@ public class MergeSort {
         }
     }
 
+    public int countReversePairs(int[] A) {
+        return countReversePairs(A, 0, A.length - 1);
+    }
+
+    private int countReversePairs(int[] A, int begin, int end) {
+        if (begin >= end) {
+            return 0;
+        }
+        int mid = begin + (end - begin) / 2;
+        int res = countReversePairs(A, begin, mid);
+        res += countReversePairs(A, mid + 1, end);
+
+        int[] left = new int[mid - begin + 2];
+        left[left.length - 1] = Integer.MAX_VALUE;
+        System.arraycopy(A, begin, left, 0, left.length - 1);
+        int[] right = new int[end - mid + 1];
+        right[right.length - 1] = Integer.MAX_VALUE;
+        System.arraycopy(A, mid + 1, right, 0, right.length - 1);
+
+        int l = 0, r = 0;
+        for (int i = begin; i <= end; i++) {
+            if (left[l] <= right[r]) {
+                A[i] = left[l];
+                l++;
+            } else {
+                A[i] = right[r];
+                r++;
+                res += left.length - l - 1;
+            }
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
         int[] A = new int[]{5, 2, 4, 7, 1, 3, 2, 6};
-        new MergeSort().sort(A);
-        String s = Arrays.stream(A).boxed().map(String::valueOf).collect(Collectors.joining(", "));
-        System.out.println(s);
+//        new MergeSort().sort(A);
+//        String s = Arrays.stream(A).boxed().map(String::valueOf).collect(Collectors.joining(", "));
+//        System.out.println(s);
+
+        int count = new MergeSort().countReversePairs(A);
+        System.out.println(count);
     }
 }
