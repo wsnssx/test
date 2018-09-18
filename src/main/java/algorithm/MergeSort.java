@@ -1,15 +1,12 @@
 package algorithm;
 
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 /**
  * Created by zhangmn on 2018/8/17.
  */
 public class MergeSort {
 
-    public void sort(int[] A) {
-        sort(A, 0, A.length - 1);
+    public void mergeSort(int[] A) {
+        mergeSort(A, 0, A.length - 1);
     }
 
     /**
@@ -18,13 +15,13 @@ public class MergeSort {
      * @param begin
      * @param end
      */
-    private void sort(int[] A, int begin, int end) {
+    private void mergeSort(int[] A, int begin, int end) {
         if (begin >= end) {
             return;
         }
         int mid = begin + (end - begin) / 2;
-        sort(A, begin, mid);
-        sort(A, mid + 1, end);
+        mergeSort(A, begin, mid);
+        mergeSort(A, mid + 1, end);
         int[] left = new int[mid - begin + 2];
         System.arraycopy(A, begin, left, 0, left.length - 1);
         left[left.length - 1] = Integer.MAX_VALUE;
@@ -78,7 +75,7 @@ public class MergeSort {
 
     public static void main(String[] args) {
         int[] A = new int[]{5, 2, 4, 7, 1, 3, 2, 6};
-//        new MergeSort().sort(A);
+//        new MergeSort().mergeSort(A);
 //        String s = Arrays.stream(A).boxed().map(String::valueOf).collect(Collectors.joining(", "));
 //        System.out.println(s);
 

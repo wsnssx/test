@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  */
 public class InsertionSort {
 
-    public void sort(int[] A) {
+    public void insertionSort(int[] A) {
         for (int i = 1; i < A.length; i++) {
             int k = A[i];
             int j = i - 1;
@@ -22,7 +22,7 @@ public class InsertionSort {
 
     public static void main(String[] args) {
         int[] A = new int[]{5, 2, 4, 6, 1, 3};
-        new InsertionSort().sort(A);
+        new InsertionSort().insertionSort(A);
         String s = Arrays.stream(A).boxed().map(String::valueOf).collect(Collectors.joining(", "));
         System.out.println(s);
     }

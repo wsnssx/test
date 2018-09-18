@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
  */
 public class BubbleSort {
 
-    public void sort(int[] A) {
+    public void bubbleSort(int[] A) {
         for (int i = 0; i < A.length - 1; i++) {
             for (int j = A.length - 1; j > i; j--) {
                 if (A[j] < A[j - 1]) {
@@ -22,7 +22,7 @@ public class BubbleSort {
 
     public static void main(String[] args) {
         int[] A = new int[]{5, 2, 4, 6, 1, 3};
-        new BubbleSort().sort(A);
+        new BubbleSort().bubbleSort(A);
         String s = Arrays.stream(A).boxed().map(String::valueOf).collect(Collectors.joining(", "));
         System.out.println(s);
     }
